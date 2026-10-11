@@ -3,11 +3,11 @@ import { motion } from 'framer-motion'
 
 
 const logos = [
-    {name:"repo",src:"/public/ikea-svgrepo-com.svg"},
-    {name:"Dougas",src:"/public/Hunter_Douglas_wordmark.png"},
-    {name:"levolor",src:"/public/image.svg"},
-    {name:"lutron",src:"/public/lutron-com-wordmark.svg"},
-    {name:"lutron",src:"/public/lutron-com-wordmark.svg"}
+    {name:"repo",src:"/ikea-svgrepo-com.svg"},
+    {name:"Dougas",src:"/Hunter_Douglas_wordmark.png"},
+    {name:"levolor",src:"/image.svg"},
+    {name:"lutron",src:"/lutron-com-wordmark.svg"},
+    {name:"lutron",src:"/lutron-com-wordmark.svg"}
 ]
 
 // Duplicate Array
