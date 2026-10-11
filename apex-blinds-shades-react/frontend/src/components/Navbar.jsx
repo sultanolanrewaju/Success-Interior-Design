@@ -1,20 +1,19 @@
 import React from 'react'
 import { ArrowRight, ArrowUpRight, Award, CalendarDays, Check, ChevronDown, ChevronLeft, ChevronRight, Clock3, Crosshair, DoorOpen, Facebook, Home, Instagram, Lightbulb, Mail, MapPin, Menu, Minus, Phone, Plus, Ruler, ShieldCheck, Sparkles, Star, Sun, X, Zap } from 'lucide-react'
-
+import { Link } from 'react-router-dom';
 
 function Navbar({mobileOpen,setMobileOpen,openBooking}){
-    const links=[['Home','#'],
-    ['Blinds','#blinds'],
-    // ['Portfolio','#portfolio'],
+    const links=[['Home','/'],
+    ['Blinds','/blinds'],
     // ['Calculator','#calculator'],
-    ['About','#about'],
-    ['Contact','#contact']];
+    ['About','/about'],
+    ['Contact','/contact']];
     return (
-    <header className="bg-white/60 fixed inset-x-0 top-0 z-50 border-b border-blue/100 bord  backdrop-blur-lg shadow-white-300 shadow-2xl">
+    <header className="bg-white/60 fixed inset-x-0 top-0 z-50   backdrop-blur-lg shadow-white-300 shadow-2xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-8">
             <a href="#" className="flex items-center gap-3">
                 <span className="grid h-50 w-50  place-items-center rounded-xl ">
-                    <img src='../logo.png' className='w-40 h-40'/></span> </a>
+                    <img src='../logo.png' className=''/></span> </a>
             <nav className="hidden items-center gap-7 lg:flex">
                 {links.map(([t,h])=><a key={t} href={h} className="text-lg text-[#000000] transition hover:text-[#ffffff]">{t}</a>)}</nav>
                 <div className="hidden lg:block">

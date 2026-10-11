@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from "../components/Navbar"
 import Hero from '../components/Hero'
 import Card from "../components/Card"
@@ -8,7 +8,13 @@ import Step from '../components/Step'
 
 import { Ruler, Sparkles, ShieldCheck, ArrowRight } from 'lucide-react'
 import Brands from '../components/Brands'
-import Testimonials from '../components/Testimonials'
+import ServiceAreaMap from '../components/ServiceAreaMap'
+import { SmoothCaret } from '../components/SmoothCaret'
+import ContactFrom from '../components/ContactFrom'
+import BookingForm from '../components/BookingForm'
+import Whatsapp from '../components/Whatsapp';
+// import Testimonials from '../components/Testimonials'
+
 const steps = [
   {
     number: '01',
@@ -38,10 +44,16 @@ const steps = [
     badge: '5-Year Warranty'
   }
 ]
+   var blind = ""
 
 
 const Home = () => {
-  return (
+  const [booking,setBooking] = useState(false)
+  
+  const Check = ()=>{
+    setBooking(!booking)
+}
+return (
 <>
 <Navbar/>
 <Hero/>
@@ -54,7 +66,13 @@ const Home = () => {
      {
     Data.map((value,id)=>{
       return(
-    <Card key={id} item={value}/>
+    <Card key={id} item={value} onQuote={()=>{
+       setBooking(!booking)
+      var name = value.title;
+      blind = name;
+      console.log(name);
+      
+    }}/>
       )
     })
    }
@@ -66,7 +84,7 @@ const Home = () => {
 
 {/* How it Works */}
 
-<div className="bg-[#031853] h-190">
+<div className="bg-[#031853] ">
 <h1 className='text-center text-white   sm:text-6xl font-bold text-white leading-tight  drop-shadow-md  pt-5'>How it Works</h1>
 <p className='text-center text-white pb-10'>We handle every detail of your custom window blinds so you can enjoy effortless light control and privacy.</p>
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 max-w-7xl mx-auto ox-4 sm:px-6">
@@ -78,7 +96,7 @@ const Home = () => {
     })
   }
 </div>
-<center><button className='bg-[#FFBD00] px-5 py-3 rounded-md font-bold cursor-pointer'>Book Our Service</button></center>
+<center><button className='bg-[#FFBD00] px-5 py-3 rounded-md font-bold cursor-pointer mb-5'>Book Our Service</button></center>
 </div>
 {/* Brands */}
     <section className="bg-[#031853] py-8 border-y border-white/10 overflow-hidden relative mt-10 mb-20 h-130">
@@ -87,8 +105,22 @@ const Home = () => {
 <Brands/>
 </section>
 
+{
+  booking ? (
+      <BookingForm blind={blind}/>
+  ):(
+    null
+  )
+}
+
+{/* Whatsapp Icon */}
+<Whatsapp/>
 {/* Testimonials Section */}
-<Testimonials/>
+{/* <Testimonials/> */}
+
+<ContactFrom/>
+      <ServiceAreaMap/>
+    
 <Footer/>
 </>
 )

@@ -15,7 +15,7 @@ import  { BookingModal }  from '../components/BookingModal'
 import { fetchCategories, fetchTestimonials, fetchEstimate } from '../API.js'
 
 
-export function Home({ openBooking, setSelectedProduct }) {
+export function Home1({ openBooking, setSelectedProduct }) {
   const [category, setCategory] = useState('Kitchen')
   const [windows, setWindows] = useState(4)
   const [room, setRoom] = useState('Kitchen')
@@ -128,7 +128,7 @@ export function Home({ openBooking, setSelectedProduct }) {
       </section>
 
       <section id="portfolio" className="mx-auto max-w-7xl px-5 py-24 md:px-8">
-        <SelectionIntro eyebrow="THE APEX DIFFERENCE" title="Craftsmanship you can feel." text="We combine designer-level finish with the practical discipline of a specialist installation team." />
+        <SelectionIntro eyebrow="THE Success DIFFERENCE" title="Craftsmanship you can feel." text="We combine designer-level finish with the practical discipline of a specialist installation team." />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <BenefitCard icon={<Ruler />} title="Laser precision" text="Exact measurements down to the millimetre." />
           <BenefitCard icon={<Clock3 />} title="Same-day quote" text="Clear pricing without the waiting game." />

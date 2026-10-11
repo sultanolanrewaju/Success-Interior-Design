@@ -2,6 +2,9 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 
+
+
+
 const Card = ({ item, i, onOpen, onQuote }) => {
   if (!item) return null
 // ICon Props  
@@ -54,7 +57,7 @@ const Card = ({ item, i, onOpen, onQuote }) => {
       <div className="border-t border-white/10 p-4 bg-black/20">
         <button 
           onClick={onQuote} 
-          className=" cursor-pointer flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-bold text-[#FFBD00] transition hover:bg-white/10"
+          className=" cursor-pointer flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-bold text-[#FFBD00] transition hover:bg-white/10 "
         >
           <span>Book Installation</span>
           <ArrowRight className="h-4 w-4" />

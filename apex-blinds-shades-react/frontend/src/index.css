@@ -3,7 +3,7 @@
 
 :root { font-family: 'DM Sans', sans-serif; color: #0f0f0f; background: "#ffffff"; font-synthesis: none; }
 html { scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; background: "#ffffff"; }
+body { margin: 0; min-width: 320px; background: "#ffffff"; overflow-x: hidden;}
 * { box-sizing: border-box; }
 .font-display { font-family: 'Playfair Display', serif; }
 ::selection { background: #c5a46d; color: #111313; }
