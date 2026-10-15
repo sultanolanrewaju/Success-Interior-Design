@@ -12,7 +12,7 @@ const SEO = ({ title, description, keywords, image, url }) => {
   return (
     <Helmet>
       {/* Basic Standard Meta Tags */}
-      <title>{title ? `${title} | Success Interior Design` : siteTitle}</title>
+      <title>{title ? `${title} || Success Interior Design` : siteTitle}</title>
       <meta name="description" content={description || defaultDescription} />
       <meta name="keywords" content={keywords || defaultKeywords} />
       <meta name="author" content="Success Interior Design" />

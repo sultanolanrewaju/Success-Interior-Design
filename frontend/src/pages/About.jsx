@@ -1,4 +1,5 @@
 import React from 'react'
+import SEO from '../components/SEO'
 import Navbar from '../components/Navbar'
 import { Phone, MessageCircle } from 'lucide-react'
 import Footer from '../components/Footer'
@@ -8,6 +9,13 @@ import VisionCard from '../components/VisionCard'
 const About = () => {
   return (
     <>
+        {/* SEO Header */}
+  <SEO 
+        title="About Us | Our Vision |Our Values"
+        description="We Provide the best,authentic window blind service in Nigeria."
+        url="https://successinteriordesign.com.ng/blinds"
+      />
+
       <Navbar />
 
       {/* Hero Header */}

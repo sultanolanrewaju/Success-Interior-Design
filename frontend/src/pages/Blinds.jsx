@@ -17,7 +17,7 @@ const Blinds = () => {
   return (
     <>
     <SEO 
-        title="Explore Our Blinds Collection | Office, Home, Kitchen & Toilet"
+        title="Explore Our Blinds Collection"
         description="Browse laser-measured custom roller, zebra, and motorized blinds designed for effortless privacy and smart home sync."
         url="https://yourdomain.com/blinds"
       />

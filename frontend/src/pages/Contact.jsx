@@ -1,4 +1,5 @@
 import React from 'react'
+import SEO from '../components/SEO'
 import Navbar from '../components/Navbar'
 import ContactForm from '../components/ContactFrom'
 import Footer from '../components/Footer' 
@@ -6,9 +7,17 @@ import VisionCard from "../components/VisionCard"
 import  ServiceAreaMap from "../components/ServiceAreaMap"
 import { ShieldCheck, Clock, Phone, Mail, MapPin, CheckCircle2 } from 'lucide-react'
 
+
 const Contact = () => {
   return (
     <>
+    {/* SEO Header */}
+  <SEO 
+        title="Get In Touch"
+        description="Call Us,Message Us - We Usually Reply In No Time."
+        url="https://successinteriordesign.com.ng/blinds"
+      />
+
       <Navbar />
 
       {/* Hero Header Section */}
