@@ -14,6 +14,42 @@ import ContactFrom from '../components/ContactFrom'
 import BookingForm from '../components/BookingForm'
 import Whatsapp from '../components/Whatsapp';
 import { Link } from 'react-router-dom'
+import SEO from '../components/SEO'
+
+
+// SEO
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "HomeGoodsStore",
+  "name": "Success Interior Design",
+  "description": "Custom window blinds, precision measurement, and certified mounting services.",
+  "url": "https://successinteriordesign.com.ng",
+  "telephone": "+23408073212619", 
+  "priceRange": "₦70,000",
+  "areaServed": "Nigeria",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Window Treatment Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "In-Home Blind Measurement & Consultation"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Motorized Shade Installation"
+        }
+      }
+    ]
+  }
+}
+  
 
 const steps = [
   {
@@ -51,6 +87,12 @@ const Home = () => {
 
   return (
     <>
+     <SEO 
+        title="Success Interior Design || Custom Window Blinds & Installation"
+        description="Transform your home with custom-tailored light-filtering, thermal, and motorized blinds. Book a free in-home measurement visit today!"
+        url="https://successinteriordesign.com.ng"
+        schema={localBusinessSchema}
+      />
     <Navbar/>
     <Hero/>
 

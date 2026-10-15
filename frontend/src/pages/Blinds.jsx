@@ -5,6 +5,7 @@ import { Data } from '../Data'
 import Footer from '../components/Footer'
 import ServiceAreaMap from '../components/ServiceAreaMap'
 import ContactFrom from '../components/ContactFrom'
+import SEO from '../components/SEO'
 
 import { Ruler, ShieldCheck } from 'lucide-react'
 import Whatsapp from '../components/Whatsapp'
@@ -15,6 +16,11 @@ const Blinds = () => {
 
   return (
     <>
+    <SEO 
+        title="Explore Our Blinds Collection | Office, Home, Kitchen & Toilet"
+        description="Browse laser-measured custom roller, zebra, and motorized blinds designed for effortless privacy and smart home sync."
+        url="https://yourdomain.com/blinds"
+      />
       <Navbar />
 
       {/* Hero Section */}
