@@ -1,32 +1,96 @@
-import React from 'react'
-import { ArrowRight, ArrowUpRight, Award, CalendarDays, Check, ChevronDown, ChevronLeft, ChevronRight, Clock3, Crosshair, DoorOpen, Facebook, Home, Instagram, Lightbulb, Mail, MapPin, Menu, Minus, Phone, Plus, Ruler, ShieldCheck, Sparkles, Star, Sun, X, Zap } from 'lucide-react'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Menu, X } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
-function Navbar({mobileOpen,setMobileOpen,openBooking}){
-    const links=[['Home','/'],
-    ['Blinds','/blinds'],
-    // ['Calculator','#calculator'],
-    ['About','/about'],
-    ['Contact','/contact']];
-    return (
-    <header className="bg-white/60 fixed inset-x-0 top-0 z-50   backdrop-blur-lg shadow-white-300 shadow-2xl">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-8">
-            <a href="#" className="flex items-center gap-3">
-                <span className="grid h-50 w-50  place-items-center rounded-xl ">
-                    <img src='../logo.png' className=''/></span> </a>
-            <nav className="hidden items-center gap-7 lg:flex">
-                {links.map(([t,h])=><a key={t} href={h} className="text-lg text-[#000000] transition hover:text-[#ffffff]">{t}</a>)}</nav>
-                <div className="hidden lg:block">
-                    <button onClick={openBooking} className="bg-[#FFBD00] rounded-full px-5 py-2.5 text-sm font-bold text-[#151615] cursor-pointer">Book Installation</button>
-                    </div>
-                    <button className="lg:hidden" onClick={()=>setMobileOpen(!mobileOpen)}>{mobileOpen?<X/>:<Menu/>}</button>
-                    </div>
-                    {mobileOpen&&<div className="border-t border-white/5 bg-[#111313] px-5 pb-5 lg:hidden">{links.map(([t,h])=><a onClick={()=>setMobileOpen(false)} key={t} href={h} className="block border-b border-white/5 py-4 text-white/70">{t}</a>)}<button onClick={()=>{setMobileOpen(false);openBooking()}} className="gold-gradient mt-4 w-full rounded-xl py-3 font-bold text-[#151615]">Book Installation</button>
-                    </div>
-                    }
-                    </header>
-    )
-    }
+function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false)
 
+  const links = [
+    ['Home', '/'],
+    ['Blinds', '/blinds'],
+    ['About', '/about'],
+    ['Contact', '/contact']
+  ]
+
+  return (
+    <header className="bg-white/95 fixed inset-x-0 top-0 z-50 backdrop-blur-md shadow-sm border-b border-slate-100">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-8">
+        
+        {/* Brand Logo (Root relative path /logo.png) */}
+        <Link to="/" className="flex items-center gap-3">
+          <div className="h-12 w-auto max-w-[160px] flex items-center justify-center">
+            <img 
+              src="/logo.png" 
+              alt="Success Interior Design Logo" 
+            />
+          </div>
+        </Link>
+
+        {/* Desktop Navigation Links */}
+        <nav className="hidden items-center gap-8 lg:flex">
+          {links.map(([title, path]) => (
+            <Link 
+              key={title} 
+              to={path} 
+              className="text-base font-semibold text-[#031853] transition-colors duration-200 hover:text-[#FFBD00]"
+            >
+              {title}
+            </Link>
+          ))}
+        </nav>
+
+        {/* EliteGuard-Style Blinking CTA Button (Desktop) */}
+        <div className="hidden lg:block relative group">
+          <span className="absolute -inset-1 rounded-full bg-[#FFBD00] opacity-75 animate-ping pointer-events-none" />
+          <span className="absolute -inset-1 rounded-full bg-[#FFBD00] opacity-50 blur-md group-hover:opacity-100 transition duration-300" />
+
+          <Link to="/contact">
+            <button className="relative bg-[#FFBD00] hover:bg-yellow-400 text-[#031853] font-extrabold text-sm px-6 py-2.5 rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-2">
+              <span>Book Installation</span>
+            </button>
+          </Link>
+        </div>
+
+        {/* Mobile Hamburger Button */}
+        <button 
+          className="lg:hidden p-2 rounded-xl text-[#031853] hover:bg-slate-100 transition-colors cursor-pointer" 
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle Navigation Menu"
+        >
+          {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* MOBILE DRAWER MENU (Controlled Internally) */}
+      {mobileOpen && (
+        <div className="lg:hidden bg-[#031853] border-t border-white/10 px-6 py-6 shadow-2xl relative z-50">
+          <div className="flex flex-col space-y-2">
+            {links.map(([title, path]) => (
+              <Link
+                key={title}
+                to={path}
+                onClick={() => setMobileOpen(false)}
+                className="w-full text-left py-3 text-lg font-bold text-white hover:text-[#FFBD00] border-b border-white/10 transition-colors duration-200 flex items-center justify-between"
+              >
+                <span>{title}</span>
+              </Link>
+            ))}
+
+            {/* Mobile Blinking CTA Button */}
+            <div className="pt-6 relative">
+              <span className="absolute inset-x-0 bottom-0 top-6 rounded-xl bg-[#FFBD00] opacity-75 pointer-events-none" />
+              
+              <Link to="/contact" onClick={() => setMobileOpen(false)}>
+                <button className="w-full relative bg-[#FFBD00] active:bg-yellow-400 text-[#031853] font-extrabold text-base py-4 rounded-xl shadow-xl cursor-pointer flex items-center justify-center gap-2.5">
+                  <span>Book Installation</span>
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  )
+}
 
 export default Navbar

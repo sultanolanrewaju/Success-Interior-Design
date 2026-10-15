@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 import { Data } from '../Data'
@@ -6,62 +6,80 @@ import Footer from '../components/Footer'
 import ServiceAreaMap from '../components/ServiceAreaMap'
 import ContactFrom from '../components/ContactFrom'
 
-import { Ruler,ShieldCheck } from 'lucide-react'
+import { Ruler, ShieldCheck } from 'lucide-react'
 import Whatsapp from '../components/Whatsapp'
 
 const Blinds = () => {
-  
-  const types = ["Office","Kitchen","Home","Toilet"]
+  const types = ["Office", "Kitchen", "Home", "Toilet"]
+  const [selectedType, setSelectedType] = useState("Home")
+
   return (
     <>
-    <Navbar/>
-    {/* <div className='absolute bg-black/20 h-[70vh] w-[100%] top-0 '></div> */}
-    <div className=' bg-[#031853] h-[320px]'>
-        <h1 className='text-4xl sm:text-6xl pl-20 text-white  font-extrabold leading-tight mb-6 drop-shadow-md text-center pt-35'>Get Any Types of  <span className='text-[#FFBD00]'>BLINDS</span> at your doorstep.</h1>
-    </div>
-    <section className='mt-10 mb-7'>
-  <h2 className='text-center text-3xl text-[#031853] font-bold pb-4'>Featured Blinds</h2>
-    <div className=" my-5 flex gap-2 overflow-x-auto pb-2 justify-center no-scrollbar">
-          {/* {categoryKeys.map((c) => (
-            <button key={c} onClick={() => setCategory(c)} className={`whitespace-nowrap rounded-full border px-5 py-2.5 text-sm transition ${category === c ? 'border-[#c5a46d] bg-[#c5a46d] text-[#171817]' : 'border-white/10 bg-white/[.03] text-white/65 hover:border-white/20 hover:text-white'}`}>
-              {c}
-            </button>
-          ))} */}
-          {
-            types.map((data,index)=>{
-              return(
-                <button className= "cursor-pointer whitespace-nowrap rounded-full border px-6 py-1 text-[16px] transition border-[#031853] bg-[#FFBD00]  text-[#000000]">{data}</button>
-              )              
-            })
-          }
+      <Navbar />
 
+      {/* Hero Section */}
+      <div className='bg-[#031853] pt-32 pb-16 px-4 sm:px-6 md:px-8 text-center text-white flex flex-col justify-center items-center relative overflow-hidden'>
+        {/* Subtle Background Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/30 via-[#031853] to-[#031853] pointer-events-none" />
+
+        <div className="relative z-10 max-w-4xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 px-4 py-1.5 rounded-full text-xs font-semibold text-[#FFBD00] uppercase tracking-widest mb-1 shadow-inner">
+            <ShieldCheck className="h-4 w-4 text-[#FFBD00]" />
+            <span>Precision Measured & Delivered</span>
+          </div>
+
+          <h1 className='text-3xl sm:text-5xl lg:text-6xl text-white font-extrabold leading-tight tracking-tight drop-shadow-md text-center'>
+            Get Any Type of <span className='text-[#FFBD00]'>BLINDS</span> at Your Doorstep.
+          </h1>
+
+          <p className="text-sm sm:text-base text-blue-100/80 max-w-2xl mx-auto font-light leading-relaxed">
+            Explore our custom collection designed for laser fitting, smart home sync, and zero-mess installation.
+          </p>
         </div>
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto px-4 sm:px-6">
-     {
-    Data.map((value,id)=>{
-      return(
-    <Card key={id} item={value}/>
-      )
-    })
-   }
-</div>
-  {/* <div className="mt-10 flex gap-2 overflow-x-auto pb-2 no-scrollbar">
-          {categoryKeys.map((c) => (
-            <button key={c} onClick={() => setCategory(c)} className={`whitespace-nowrap rounded-full border px-5 py-2.5 text-sm transition ${category === c ? 'border-[#c5a46d] bg-[#c5a46d] text-[#171817]' : 'border-white/10 bg-white/[.03] text-white/65 hover:border-white/20 hover:text-white'}`}>
-              {c}
-            </button>
-          ))}
-          <button className= "whitespace-nowrap rounded-full border px-5 py-2.5 text-sm transition 'border-[#c5a46d] bg-[#c5a46d] text-[#000000]">Kitchen</button>
-          <button className= "whitespace-nowrap rounded-full border px-5 py-2.5 text-sm transition 'border-[#c5a46d] bg-[#c5a46d] text-[#000000]">Kitchen</button>
+      </div>
 
+      {/* Featured Blinds Section */}
+      <section className='mt-12 mb-16'>
+        <h2 className='text-center text-3xl sm:text-4xl text-[#031853] font-extrabold tracking-tight pb-2'>
+          Featured Blinds
+        </h2>
 
-        </div> */}
-</section>
-<ServiceAreaMap/>
-{/* Whatsapp */}
-<Whatsapp/>
+        {/* Category Buttons */}
+        <div className="my-6 flex gap-3 overflow-x-auto pb-3 justify-start sm:justify-center px-4 no-scrollbar">
+          {types.map((data, index) => {
+            const isSelected = selectedType === data
+            return (
+              <button
+                key={index}
+                onClick={() => setSelectedType(data)}
+                className={`cursor-pointer whitespace-nowrap rounded-full px-6 py-2.5 text-sm font-extrabold transition-all duration-300 border-2 shadow-sm shrink-0 flex items-center justify-center ${
+                  isSelected
+                    ? 'bg-[#FFBD00] text-[#031853] border-[#FFBD00] scale-105 shadow-md'
+                    : 'bg-slate-50 text-[#031853] border-slate-200 hover:border-[#031853] hover:bg-slate-100'
+                }`}
+              >
+                {data}
+              </button>
+            )
+          })}
+        </div>
 
-    <Footer/>
+        {/* Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto px-4 sm:px-6">
+          {Data.map((value, id) => {
+            return (
+              <Card key={id} item={value} />
+            )
+          })}
+        </div>
+      </section>
+
+      <ServiceAreaMap />
+      
+      {/* Whatsapp */}
+      <Whatsapp />
+
+      <Footer />
     </>
   )
 }

@@ -1,0 +1,354 @@
+[1mdiff --git a/frontend/src/components/ContactFrom.jsx b/frontend/src/components/ContactFrom.jsx[m
+[1mindex db4b864..9b302d1 100644[m
+[1m--- a/frontend/src/components/ContactFrom.jsx[m
+[1m+++ b/frontend/src/components/ContactFrom.jsx[m
+[36m@@ -1,31 +1,157 @@[m
+ import React, { useState } from 'react'[m
+ import { SmoothCaret } from './SmoothCaret'[m
+[32m+[m[32mimport { User, Mail, MessageSquare, Tag, CheckCircle2, ArrowRight } from 'lucide-react'[m
+[32m+[m[32mimport ServiceAreaMap from "../components/ServiceAreaMap"[m[41m [m
+[32m+[m[32mimport Footer from "../components/Footer"[m
+ [m
+ const ContactFrom = () => {[m
+[31m-const [name,setName] = useState("")[m
+[31m-return ([m
+[31m-<>[m
+[31m-<section>[m
+[31m-  <div className='grid grid-cols-1 justify-center md:grid-cols-2 lg:ml-20  sm:gap-8 max-w-7xl mx-auto px-4 sm:px-6">'>[m
+[31m-    <div className='mt-5'>[m
+[31m-      <h1 className='text-6xl font-bold pt-2'>Send Us a Message</h1>[m
+[31m-      <p className='pt-5 text-xl'>Send us a message to let us know what we can offer you anyday. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa autem necessitatibus enim laboriosam omnis temporibus alias fuga eaque delectus pariatur, commodi mollitia voluptatibus, voluptate atque obcaecati in sed, eligendi dignissimos?</p>[m
+[31m-    </div>[m
+[31m-    <div >[m
+[31m-      <form action="" className='flex flex-col  lg:mt-3 '>[m
+[31m-        <div className='flex lg:flex-row gap-1 mb-2 sm:flex-col '>[m
+[31m-  <input type="text" className='border border-gray-400 rounded-md px-5 py-1.5  outline-none focus placeholder:text-gray' placeholder='Input your Name..' /><br />[m
+[31m-        <input type="email" className='border border-gray-400 rounded-md px-5 py-1.5  outline-none focus placeholder:text-gray' placeholder='Input your Email..' /><br />[m
+[32m+[m[32m  const [formData, setFormData] = useState({[m
+[32m+[m[32m    name: '',[m
+[32m+[m[32m    email: '',[m
+[32m+[m[32m    subject: '',[m
+[32m+[m[32m    message: '',[m
+[32m+[m[32m    windowCount: '1 - 4'[m
+[32m+[m[32m  })[m
+[32m+[m
+[32m+[m[32m  const handleSubmit = (e) => {[m
+[32m+[m[32m    e.preventDefault()[m
+[32m+[m[32m    console.log('Submitted Message:', formData)[m
+[32m+[m[32m    alert('Thank you! Your inquiry has been sent. We will respond within 30 minutes.')[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <>[m
+[32m+[m[32m    <section className="py-16 md:py-24 bg-slate-50">[m
+[32m+[m[32m      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">[m
+[32m+[m[41m        [m
+[32m+[m[32m        {/* Left Column: Direct Value Props & Expectation Setter */}[m
+[32m+[m[32m        <div className="lg:col-span-5 space-y-8">[m
+[32m+[m[32m          <div>[m
+[32m+[m[32m            <span className="bg-[#031853] text-[#FFBD00] text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block mb-3">[m
+[32m+[m[32m              Direct Contact[m
+[32m+[m[32m            </span>[m
+[32m+[m[32m            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#031853] tracking-tight">[m
+[32m+[m[32m              Send Us a Message[m
+[32m+[m[32m            </h2>[m
+[32m+[m[32m            <p className="pt-3 text-slate-600 text-sm sm:text-base leading-relaxed font-medium">[m
+[32m+[m[32m              Whether you bought blinds from Hunter Douglas, Lutron, IKEA, or custom designer suppliers—our certified installation team is ready to measure, mount, and sync your window treatments.[m
+[32m+[m[32m            </p>[m
+[32m+[m[32m          </div>[m
+[32m+[m
+[32m+[m[32m          {/* What Happens Next Checklist */}[m
+[32m+[m[32m          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4">[m
+[32m+[m[32m            <h3 className="text-xs font-bold uppercase tracking-wider text-[#031853]">[m
+[32m+[m[32m              What Happens Next?[m
+[32m+[m[32m            </h3>[m
+[32m+[m[41m            [m
+[32m+[m[32m            <ul className="space-y-3 text-xs sm:text-sm text-slate-700 font-medium">[m
+[32m+[m[32m              <li className="flex items-start gap-3">[m
+[32m+[m[32m                <CheckCircle2 className="h-5 w-5 text-[#FFBD00] shrink-0 mt-0.5" />[m
+[32m+[m[32m                <span><strong>30-Min Response:</strong> We review your window layout and bracket requirements.</span>[m
+[32m+[m[32m              </li>[m
+[32m+[m[32m              <li className="flex items-start gap-3">[m
+[32m+[m[32m                <CheckCircle2 className="h-5 w-5 text-[#FFBD00] shrink-0 mt-0.5" />[m
+[32m+[m[32m                <span><strong>Tailored Estimate:</strong> Receive a clear, zero-hidden-fee fitting proposal.</span>[m
+[32m+[m[32m              </li>[m
+[32m+[m[32m              <li className="flex items-start gap-3">[m
+[32m+[m[32m                <CheckCircle2 className="h-5 w-5 text-[#FFBD00] shrink-0 mt-0.5" />[m
+[32m+[m[32m                <span><strong>In-Home Fitting:</strong> Precision laser measurement, mounting, and zero-mess cleanup.</span>[m
+[32m+[m[32m              </li>[m
+[32m+[m[32m            </ul>[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m        </div>[m
+[32m+[m
+[32m+[m[32m        {/* Right Column: Form with SmoothCaret Inputs */}[m
+[32m+[m[32m        <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl">[m
+[32m+[m[32m          <form onSubmit={handleSubmit} className="space-y-6">[m
+[32m+[m[41m            [m
+[32m+[m[32m            {/* Name Input */}[m
+[32m+[m[32m            <SmoothCaret[m
+[32m+[m[32m              label="Full Name"[m
+[32m+[m[32m              icon={User}[m
+[32m+[m[32m              placeholder="e.g. Sarah Jenkins"[m
+[32m+[m[32m              value={formData.name}[m
+[32m+[m[32m              onChange={(e) => setFormData({ ...formData, name: e.target.value })}[m
+[32m+[m[32m              required[m
+[32m+[m[32m            />[m
+[32m+[m
+[32m+[m[32m            {/* Email Input */}[m
+[32m+[m[32m            <SmoothCaret[m
+[32m+[m[32m              label="Email Address"[m
+[32m+[m[32m              type="email"[m
+[32m+[m[32m              icon={Mail}[m
+[32m+[m[32m              placeholder="e.g. sarah@example.com"[m
+[32m+[m[32m              value={formData.email}[m
+[32m+[m[32m              onChange={(e) => setFormData({ ...formData, email: e.target.value })}[m
+[32m+[m[32m              required[m
+[32m+[m[32m            />[m
+[32m+[m
+[32m+[m[32m            {/* Subject Input */}[m
+[32m+[m[32m            <SmoothCaret[m
+[32m+[m[32m              label="Subject / Project Type"[m
+[32m+[m[32m              icon={Tag}[m
+[32m+[m[32m              placeholder="e.g. Motorized Roller Shade Fitting"[m
+[32m+[m[32m              value={formData.subject}[m
+[32m+[m[32m              onChange={(e) => setFormData({ ...formData, subject: e.target.value })}[m
+[32m+[m[32m              required[m
+[32m+[m[32m            />[m
+[32m+[m
+[32m+[m[32m            {/* Window Count Quick Selector */}[m
+[32m+[m[32m            <div className="space-y-2">[m
+[32m+[m[32m              <label className="text-xs font-semibold text-[#031853] uppercase tracking-wide px-1">[m
+[32m+[m[32m                Estimated Number of Windows[m
+[32m+[m[32m              </label>[m
+[32m+[m[32m              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">[m
+[32m+[m[32m                {['1 - 4', '5 - 10', '11 - 20', '20+ / Office'].map((range) => ([m
+[32m+[m[32m                  <button[m
+[32m+[m[32m                    key={range}[m
+[32m+[m[32m                    type="button"[m
+[32m+[m[32m                    onClick={() => setFormData({ ...formData, windowCount: range })}[m
+[32m+[m[32m                    className={`py-2.5 px-3 rounded-xl text-xs font-bold border transition-all duration-300 ${[m
+[32m+[m[32m                      formData.windowCount === range[m
+[32m+[m[32m                        ? 'bg-[#031853] text-[#FFBD00] border-[#031853] shadow-md'[m
+[32m+[m[32m                        : 'bg-slate-50 text-[#031853] border-slate-200 hover:bg-slate-100'[m
+[32m+[m[32m                    }`}[m
+[32m+[m[32m                  >[m
+[32m+[m[32m                    {range} Windows[m
+[32m+[m[32m                  </button>[m
+[32m+[m[32m                ))}[m
+[32m+[m[32m              </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m
+[32m+[m[32m            {/* Message Area */}[m
+[32m+[m[32m            <div className="flex flex-col gap-1.5">[m
+[32m+[m[32m              <label className="text-xs font-semibold text-[#031853] uppercase tracking-wide px-1">[m
+[32m+[m[32m                Your Message / Window Details[m
+[32m+[m[32m              </label>[m
+[32m+[m[32m              <textarea[m
+[32m+[m[32m                rows={4}[m
+[32m+[m[32m                value={formData.message}[m
+[32m+[m[32m                onChange={(e) => setFormData({ ...formData, message: e.target.value })}[m
+[32m+[m[32m                placeholder="Tell us about your window sizes, mounting heights, or smart motorization needs..."[m
+[32m+[m[32m                className="w-full p-4 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#031853] focus:ring-2 focus:ring-[#031853]/20 transition duration-300 placeholder:text-[#ccc]/200"[m
+[32m+[m[32m                required[m
+[32m+[m[32m              />[m
+[32m+[m[32m            </div>[m
+[32m+[m
+[32m+[m[32m            {/* Submit Button */}[m
+[32m+[m[32m            <button[m
+[32m+[m[32m              type="submit"[m
+[32m+[m[32m              className="w-full bg-[#031853] hover:bg-blue-950 text-[#FFBD00] font-extrabold text-base py-4 rounded-2xl shadow-lg flex items-center justify-center gap-3 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"[m
+[32m+[m[32m            >[m
+[32m+[m[32m              <span>Send Message</span>[m
+[32m+[m[32m              <ArrowRight className="h-5 w-5" />[m
+[32m+[m[32m            </button>[m
+[32m+[m
+[32m+[m[32m          </form>[m
+         </div>[m
+[31m-         [m
+[31m-        <input type="subject" className="border border-gray-400 rounded-md px-5 py-1.5 w-117 outline-none focus placeholder:text-gray"  placeholder='Input your Subject..'/><br />[m
+[31m-        <textarea name="content" className='border border-gray-400 w-117  rounded-md px-5 py-1.5 w-100 h-70 outline-none focus placeholder:text-gray' id="" placeholder='Your Message..'></textarea><br />[m
+[31m-      </form>[m
+[31m-    </div>[m
+[31m-  </div>[m
+[31m-</section>[m
+[31m-</>[m
+[31m-)[m
+[32m+[m
+[32m+[m[32m      </div>[m
+[32m+[m[32m    </section>[m
+[32m+[m[32m    <ServiceAreaMap/>[m
+[32m+[m[32m    <Footer/>[m
+[32m+[m[32m    </>[m
+[32m+[m[32m  )[m
+ }[m
+ [m
+ export default ContactFrom[m
+\ No newline at end of file[m
+[1mdiff --git a/frontend/src/components/Navbar.jsx b/frontend/src/components/Navbar.jsx[m
+[1mindex 90aa6ae..043040c 100644[m
+[1m--- a/frontend/src/components/Navbar.jsx[m
+[1m+++ b/frontend/src/components/Navbar.jsx[m
+[36m@@ -15,7 +15,7 @@[m [mfunction Navbar({mobileOpen,setMobileOpen,openBooking}){[m
+                 <span className="grid h-50 w-50  place-items-center rounded-xl ">[m
+                     <img src='../logo.png' className=''/></span> </a>[m
+             <nav className="hidden items-center gap-7 lg:flex">[m
+[31m-                {links.map(([t,h])=><a key={t} href={h} className="text-lg text-[#000000] transition hover:text-[#ffffff]">{t}</a>)}</nav>[m
+[32m+[m[32m                {links.map(([t,h])=><a key={t} href={h} className="text-lg text-[#000000] transition hover:text-[#031853]/90 transitio duration-2s">{t}</a>)}</nav>[m
+                 <div className="hidden lg:block">[m
+                     <button onClick={openBooking} className="bg-[#FFBD00] rounded-full px-5 py-2.5 text-sm font-bold text-[#151615] cursor-pointer">Book Installation</button>[m
+                     </div>[m
+[1mdiff --git a/frontend/src/components/SmoothCaret.jsx b/frontend/src/components/SmoothCaret.jsx[m
+[1mindex 9a80103..97e7d43 100644[m
+[1m--- a/frontend/src/components/SmoothCaret.jsx[m
+[1m+++ b/frontend/src/components/SmoothCaret.jsx[m
+[36m@@ -40,7 +40,7 @@[m [mexport const SmoothCaret = forwardRef(({[m
+   return ([m
+     <div className="flex flex-col gap-1.5 w-full relative">[m
+       {label && ([m
+[31m-        <label className="text-xs font-semibold text-blue-100/80 tracking-wide uppercase px-1">[m
+[32m+[m[32m        <label className="text-xs font-semibold text-[#031853] tracking-wide uppercase px-1">[m
+           {label}[m
+         </label>[m
+       )}[m
+[1mdiff --git a/frontend/src/components/Whatsapp.jsx b/frontend/src/components/Whatsapp.jsx[m
+[1mindex 21bb0bf..ee00a96 100644[m
+[1m--- a/frontend/src/components/Whatsapp.jsx[m
+[1m+++ b/frontend/src/components/Whatsapp.jsx[m
+[36m@@ -6,8 +6,25 @@[m [mconst Whatsapp = () => {[m
+   return ([m
+     <>[m
+     <a href="https://shorturl.at/XcWTo" target='blank'>[m
+[31m-   <IoLogoWhatsapp size={50} className='fixed bottom-5 right-4 rounded-full  bg-green-700 z-50 p-1 cursor-pointer animate-[pulse_0.3s_linear_infinite]  shadow-[2px_1px_17px_10px_green]'  color='white'/>    [m
+[31m-    </a>[m
+[32m+[m[32m<div[m[41m [m
+[32m+[m[32m  className="fixed bottom-6 right-6 z-50 flex items-center justify-center cursor-pointer group"[m
+[32m+[m[32m>[m
+[32m+[m[32m  {/* Blinking Outer Signal Ring */}[m
+[32m+[m[32m  <span className="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75 animate-ping" />[m
+[32m+[m
+[32m+[m[32m  {/* WhatsApp Main Button */}[m
+[32m+[m[32m  <IoLogoWhatsapp[m[41m [m
+[32m+[m[32m    size={56}[m[41m [m
+[32m+[m[32m    className="relative rounded-full bg-[#25D366] text-white p-3 shadow-[0_8px_25px_rgba(37,211,102,0.6)] group-hover:scale-110 active:scale-95 transition-all duration-300"[m[41m [m
+[32m+[m[32m  />[m
+[32m+[m
+[32m+[m[32m  {/* Live Active Blinking Green Badge */}[m
+[32m+[m[32m  <span className="absolute -top-1 -right-1 flex h-4 w-4">[m
+[32m+[m[32m    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>[m
+[32m+[m[32m    <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-white"></span>[m
+[32m+[m[32m  </span>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</a>[m
+     </>[m
+ [m
+   )[m
+[1mdiff --git a/frontend/src/index.css b/frontend/src/index.css[m
+[1mindex 64d93ce..d3b180a 100644[m
+[1m--- a/frontend/src/index.css[m
+[1m+++ b/frontend/src/index.css[m
+[36m@@ -6,11 +6,11 @@[m [mhtml { scroll-behavior: smooth; }[m
+ body { margin: 0; min-width: 320px; background: "#ffffff"; overflow-x: hidden;}[m
+ * { box-sizing: border-box; }[m
+ .font-display { font-family: 'Playfair Display', serif; }[m
+[31m-::selection { background: #c5a46d; color: #111313; }[m
+[32m+[m[32m::selection { background: #FFBD00; color: #111313; }[m
+ .no-scrollbar::-webkit-scrollbar { display:none; }[m
+ .no-scrollbar { scrollbar-width:none; }[m
+ /* .gold-gradient { background: linear-gradient(135deg,#e4c994 0%,#b38b4e 55%,#f1ddae 100%); } */[m
+ .hero-glow { box-shadow: 0 0 100px rgba(198,160,92,.13); }[m
+ .card-glow:hover { box-shadow: 0 24px 80px rgba(0,0,0,.35), 0 0 45px rgba(198,160,92,.08); }[m
+[31m-.range { accent-color:#c5a46d; }[m
+[32m+[m[32m.range { accent-color:#FFBD00; }[m
+ input[type=range] { width:100%; }[m
+[1mdiff --git a/frontend/src/pages/Contact.jsx b/frontend/src/pages/Contact.jsx[m
+[1mindex 43fea43..09f8391 100644[m
+[1m--- a/frontend/src/pages/Contact.jsx[m
+[1m+++ b/frontend/src/pages/Contact.jsx[m
+[36m@@ -1,8 +1,86 @@[m
+ import React from 'react'[m
+[32m+[m[32mimport Navbar from '../components/Navbar'[m
+[32m+[m[32mimport ContactForm from '../components/ContactFrom'[m
+[32m+[m[32mimport Footer from '../components/Footer' // Add your Footer here if available[m
+[32m+[m[32mimport { ShieldCheck, Clock, Phone, Mail, MapPin, CheckCircle2 } from 'lucide-react'[m
+ [m
+ const Contact = () => {[m
+   return ([m
+[31m-    <div>Contact</div>[m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Navbar />[m
+[32m+[m
+[32m+[m[32m      {/* Hero Header Section */}[m
+[32m+[m[32m      <section className="bg-[#031853] text-white pt-32 pb-20 px-4 sm:px-6 md:px-8 text-center relative overflow-hidden">[m
+[32m+[m[32m        {/* Subtle radial background glow */}[m
+[32m+[m[32m        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/30 via-[#031853] to-[#031853] pointer-events-none" />[m
+[32m+[m
+[32m+[m[32m        <div className="max-w-4xl mx-auto space-y-4 relative z-10">[m
+[32m+[m[32m          {/* Trust Badge */}[m
+[32m+[m[32m          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 px-4 py-1.5 rounded-full text-xs font-semibold text-[#FFBD00] uppercase tracking-widest shadow-inner">[m
+[32m+[m[32m            <ShieldCheck className="h-4 w-4 shrink-0 text-[#FFBD00]" />[m
+[32m+[m[32m            <span>Laser-Fit Certified Installers</span>[m
+[32m+[m[32m          </div>[m
+[32m+[m
+[32m+[m[32m          {/* Heading */}[m
+[32m+[m[32m          <h1 className="text-3xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight drop-shadow-md">[m
+[32m+[m[32m            Let’s Get Your Windows <br className="hidden sm:inline" />[m
+[32m+[m[32m            <span className="text-[#FFBD00]">Measured to Perfection</span>[m
+[32m+[m[32m          </h1>[m
+[32m+[m
+[32m+[m[32m          {/* Subheading with optimal padding & line length */}[m
+[32m+[m[32m          <p className="text-sm sm:text-base md:text-lg text-blue-100/80 px-4 sm:px-6 md:px-8 max-w-2xl sm:max-w-3xl mx-auto font-light leading-relaxed">[m
+[32m+[m[32m            Questions about laser measurements, custom bracket mounting, motorized shades, or smart home sync? Message us — we usually reply within 30 minutes.[m
+[32m+[m[32m          </p>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m      </section>[m
+[32m+[m
+[32m+[m[32m      {/* Quick Info Bar */}[m
+[32m+[m[32m      <section className="bg-white border-b border-slate-200 py-6 px-4 sm:px-6">[m
+[32m+[m[32m        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">[m
+[32m+[m[41m          [m
+[32m+[m[32m          <div className="flex items-center justify-center md:justify-start gap-4 p-3">[m
+[32m+[m[32m            <div className="p-3 bg-[#031853] text-[#FFBD00] rounded-2xl shrink-0">[m
+[32m+[m[32m              <Phone className="h-5 w-5" />[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            <div>[m
+[32m+[m[32m              <span className="text-xs text-slate-500 font-semibold block uppercase">Call or Text</span>[m
+[32m+[m[32m              <a href="https://shorturl.at/XcWTo" target='blank' className="text-sm font-bold text-[#031853] hover:text-[#FFBD00] transition">[m
+[32m+[m[32m               +234 (080) 732-12619[m
+[32m+[m[32m              </a>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m          </div>[m
+[32m+[m
+[32m+[m[32m          <div className="flex items-center justify-center md:justify-start gap-4 p-3">[m
+[32m+[m[32m            <div className="p-3 bg-[#031853] text-[#FFBD00] rounded-2xl shrink-0">[m
+[32m+[m[32m              <Mail className="h-5 w-5" />[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            <div>[m
+[32m+[m[32m              <span className="text-xs text-slate-500 font-semibold block uppercase">Email Support</span>[m
+[32m+[m[32m               <a href="mailto:vcentsuccess@gmail.com" target='blank' className="text-sm font-bold text-[#031853] hover:text-[#FFBD00] transition">[m
+[32m+[m[32m                vcentsuccess@gmail.com[m
+[32m+[m[32m              </a>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m          </div>[m
+[32m+[m
+[32m+[m[32m          <div className="flex items-center justify-center md:justify-start gap-4 p-3">[m
+[32m+[m[32m            <div className="p-3 bg-[#031853] text-[#FFBD00] rounded-2xl shrink-0">[m
+[32m+[m[32m              <Clock className="h-5 w-5" />[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            <div>[m
+[32m+[m[32m              <span className="text-xs text-slate-500 font-semibold block uppercase">Response Time</span>[m
+[32m+[m[32m              <span className="text-sm font-bold text-[#031853]">Within 30 Minutes</span>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m          </div>[m
+[32m+[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m      </section>[m
+[32m+[m
+[32m+[m[32m      {/* Main Contact Form & Details Section */}[m
+[32m+[m[32m      <ContactForm />[m
+[32m+[m
+[32m+[m[32m      {/* Footer */}[m
+[32m+[m[32m      {/* <Footer /> */}[m
+[32m+[m[32m    </>[m
+   )[m
+ }[m
+ [m

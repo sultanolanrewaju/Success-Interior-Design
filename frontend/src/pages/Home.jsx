@@ -13,7 +13,7 @@ import { SmoothCaret } from '../components/SmoothCaret'
 import ContactFrom from '../components/ContactFrom'
 import BookingForm from '../components/BookingForm'
 import Whatsapp from '../components/Whatsapp';
-// import Testimonials from '../components/Testimonials'
+import { Link } from 'react-router-dom'
 
 const steps = [
   {
@@ -44,86 +44,102 @@ const steps = [
     badge: '5-Year Warranty'
   }
 ]
-   var blind = ""
-
 
 const Home = () => {
-  const [booking,setBooking] = useState(false)
-  
-  const Check = ()=>{
-    setBooking(!booking)
-}
-return (
-<>
-<Navbar/>
-<Hero/>
+  const [booking, setBooking] = useState(false)
+  const [blind, setBlind] = useState("")
 
-{/* Products Section */}
-<div className="products">
-  <h1 className='text-[40px] font-extrabold text-center py-20'>Get your Amazing window blind Installed</h1>
-   
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto px-4 sm:px-6">
-     {
-    Data.map((value,id)=>{
-      return(
-    <Card key={id} item={value} onQuote={()=>{
-       setBooking(!booking)
-      var name = value.title;
-      blind = name;
-      console.log(name);
-      
-    }}/>
-      )
-    })
-   }
-</div>
-<center>
-<button className='px-15 py-3 bg-[#031853] rounded-sm text-white text-xl my-10  cursor-pointer'>See More</button>
-</center>
+  return (
+    <>
+    <Navbar/>
+    <Hero/>
+
+    {/* Products Section */}
+    <div className="products">
+      <h1 className='text-[40px] font-extrabold text-center py-20'>Get your Amazing window blind Installed</h1>
+       
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto px-4 sm:px-6">
+         {
+        Data.map((value, id)=>{
+          return(
+        <Card key={id} item={value} onQuote={()=>{
+           setBlind(value.title);
+           setBooking(true);
+        }}/>
+          )
+        })
+       }
+    </div>
+    <center>
+ <Link to="blinds"><button className='px-15 py-3 bg-[#031853] rounded-sm text-white text-xl my-10  cursor-pointer'>See More</button>
+</Link>
+    </center>
+    </div>
+
+   {/* How it Works */}
+<div className="bg-[#031853] py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 text-white">
+  <div className="max-w-7xl mx-auto text-center space-y-4 mb-10 md:mb-14">
+    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight drop-shadow-md">
+      How it Works
+    </h1>
+    <p className="text-sm sm:text-base text-blue-100/80 max-w-2xl mx-auto font-light leading-relaxed">
+      We handle every detail of your custom window blinds so you can enjoy effortless light control and privacy.
+    </p>
+  </div>
+
+  {/* Responsive Step Cards Grid */}
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto items-stretch">
+    {steps.map((step) => (
+      <Step 
+        key={step.number} 
+        number={step.number} 
+        img={step.img} 
+        title={step.title} 
+        desc={step.description} 
+        Icon={step.icon}
+      />
+    ))}
+  </div>
+
+  {/* CTA Button Wrapper */}
+  <div className="flex justify-center mt-12 sm:mt-16">
+    <button 
+      onClick={() => { 
+        setBlind("General Blind"); 
+        setBooking(true); 
+      }} 
+      className="bg-[#FFBD00] text-[#031853] px-8 py-3.5 rounded-xl font-extrabold text-base hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-yellow-500/20 transform hover:-translate-y-0.5 cursor-pointer"
+    >
+      Book Our Service
+    </button>
+  </div>
 </div>
 
-{/* How it Works */}
-
-<div className="bg-[#031853] ">
-<h1 className='text-center text-white   sm:text-6xl font-bold text-white leading-tight  drop-shadow-md  pt-5'>How it Works</h1>
-<p className='text-center text-white pb-10'>We handle every detail of your custom window blinds so you can enjoy effortless light control and privacy.</p>
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 max-w-7xl mx-auto ox-4 sm:px-6">
-  {
-    steps.map((step)=>{
-      return(
-        <Step key={step.number} number={step.number} img={step.img} title={step.title} desc={step.description} Icon={step.icon}/>
-      )
-    })
-  }
-</div>
-<center><button className='bg-[#FFBD00] px-5 py-3 rounded-md font-bold cursor-pointer mb-5'>Book Our Service</button></center>
-</div>
-{/* Brands */}
+    {/* Brands */}
     <section className="bg-[#031853] py-8 border-y border-white/10 overflow-hidden relative mt-10 mb-20 h-130">
-    <h1 className='text-center text-5xl pt-10 pb-4 font-extrabold text-white'>Brands we work with</h1>
-    <p className='text-white font-bold pl-20 pr-20 text-center'>We've gotten 90% of your Products from this remarkable brands.</p>
-<Brands/>
-</section>
+      <h1 className='text-center text-5xl pt-10 pb-4 font-extrabold text-white'>Brands we work with</h1>
+      <p className='text-white font-bold pl-20 pr-20 text-center'>We've gotten 90% of your Products from this remarkable brands.</p>
+      <Brands/>
+    </section>
 
-{
-  booking ? (
-      <BookingForm blind={blind}/>
-  ):(
-    null
+    {/* Booking Form Modal with close handler */}
+    {
+      booking && (
+        <BookingForm 
+          blind={blind} 
+          onClose={() => setBooking(false)} 
+        />
+      )
+    }
+
+    {/* Whatsapp Icon */}
+    <Whatsapp/>
+
+    <ContactFrom/>
+    <ServiceAreaMap/>
+    <Footer/>
+    </>
   )
-}
-
-{/* Whatsapp Icon */}
-<Whatsapp/>
-{/* Testimonials Section */}
-{/* <Testimonials/> */}
-
-<ContactFrom/>
-      <ServiceAreaMap/>
-    
-<Footer/>
-</>
-)
 }
 
 export default Home

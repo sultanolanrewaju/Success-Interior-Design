@@ -40,7 +40,7 @@ export const SmoothCaret = forwardRef(({
   return (
     <div className="flex flex-col gap-1.5 w-full relative">
       {label && (
-        <label className="text-xs font-semibold text-blue-100/80 tracking-wide uppercase px-1">
+        <label className="text-xs font-semibold text-[#031853] tracking-wide uppercase px-1">
           {label}
         </label>
       )}
@@ -67,7 +67,7 @@ export const SmoothCaret = forwardRef(({
         <input
           ref={inputRef}
           type={type}
-          value={value}
+          value={value || ''}
           onChange={(e) => {
             if (onChange) onChange(e)
             handleCaretUpdate()
