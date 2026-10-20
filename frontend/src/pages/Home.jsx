@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import Axios from "axios"
 import Navbar from "../components/Navbar"
 import Hero from '../components/Hero'
 import Card from "../components/Card"
@@ -77,13 +78,30 @@ const steps = [
     icon: ShieldCheck,
     description:
       'Our certified installation specialists handle complete mounting, motorization pairing, and smart home synchronization in just one visit.',
-    badge: '5-Year Warranty'
-  }
-]
-
-const Home = () => {
+      badge: '5-Year Warranty'
+    }
+  ]
+  
+  const Home = () => {
+    useEffect(()=>{
+       const Fetch = async()=>{
+      try {
+          const response = await Axios.get("http://localhost:8080/api/products")
+         setProducts(response.data)
+         console.log(response.data.features);
+         
+      } catch (error) {
+        console.log("Error While Fetching:",error)
+      }finally{
+        alert("Done")
+      }
+      }
+      Fetch()
+    },[])
+    const [products,setProducts] = useState([])
   const [booking, setBooking] = useState(false)
   const [blind, setBlind] = useState("")
+
 
   return (
     <>
@@ -102,7 +120,7 @@ const Home = () => {
        
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto px-4 sm:px-6">
          {
-        Data.map((value, id)=>{
+        products.map((value, id)=>{
           return(
         <Card key={id} item={value} onQuote={()=>{
            setBlind(value.title);

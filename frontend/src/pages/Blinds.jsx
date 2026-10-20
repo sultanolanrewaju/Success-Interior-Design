@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import Axios from "axios"
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 import { Data } from '../Data'
@@ -6,11 +7,33 @@ import Footer from '../components/Footer'
 import ServiceAreaMap from '../components/ServiceAreaMap'
 import ContactFrom from '../components/ContactFrom'
 import SEO from '../components/SEO'
-
-import { Ruler, ShieldCheck } from 'lucide-react'
+import BookingForm from '../components/BookingForm'
+import { Loader, Ruler, ShieldCheck } from 'lucide-react'
 import Whatsapp from '../components/Whatsapp'
+import Novalue from "../components/Novalue"
+
+
+
 
 const Blinds = () => {
+  useEffect(()=>{
+     const Fetch = async()=>{
+    try {
+      setIsLoading(true)
+        const response = await Axios.get("http://localhost:8080/api/products")
+       setProducts(response.data)
+    } catch (error) {
+      console.log("Error While Fetching:",error)
+    }finally{
+  setIsLoading(false)
+    }
+    }
+    Fetch()
+  },[])
+  const [products,setProducts] = useState([])
+  const [booking,setBooking] = useState(false)
+    const [blind, setBlind] = useState("")
+    const [isloading,setIsLoading] = useState(true)
   const types = ["Office", "Kitchen", "Home", "Toilet"]
   const [selectedType, setSelectedType] = useState("Home")
 
@@ -19,7 +42,7 @@ const Blinds = () => {
     <SEO 
         title="Explore Our Blinds Collection"
         description="Browse laser-measured custom roller, zebra, and motorized blinds designed for effortless privacy and smart home sync."
-        url="https://yourdomain.com/blinds"
+        url="https://successinteriordesign.com.ng/blinds"
       />
       <Navbar />
 
@@ -72,16 +95,37 @@ const Blinds = () => {
 
         {/* Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto px-4 sm:px-6">
-          {Data.map((value, id) => {
+         
+          {
+            isloading?(
+            <Loader/>
+            ):products.length > 0 ?(
+ products.map((value, id) => {
             return (
-              <Card key={id} item={value} />
+              <Card key={id} item={value}  onQuote={()=>{
+           setBlind(value.title);
+           setBooking(true);
+        }} />
             )
-          })}
+          })
+            ):(
+            <Novalue/>
+            )
+          }
+   
         </div>
       </section>
 
       <ServiceAreaMap />
-      
+         {/* Booking Form Modal with close handler */}
+    {
+      booking && (
+        <BookingForm 
+          blind={blind} 
+          onClose={() => setBooking(false)} 
+        />
+      )
+    }
       {/* Whatsapp */}
       <Whatsapp />
 

@@ -13,7 +13,7 @@ export const getProducts = async(req,res)=>{
 
 export const getOneProducts = async(req,res)=>{
     try {
-        const Id = req.params.id;
+        const Id = req  .params.id;
         const findproduct = await Product.findById({_id:Id})
             if(!findproduct){
                 res.status(400).json({message:"Product already exist"})
@@ -28,21 +28,33 @@ export const getOneProducts = async(req,res)=>{
 
 export const postProducts = async(req,res)=>{
     try {
-        const {image,name,category,description} = req.body;
+        const {title,category,features,description} = req.body;
+        const imageUrl = req.file ? req.file.path : null;
+
+        let parsedFeatures = features;
+        if (typeof features === 'string') {
+            try {
+                parsedFeatures = JSON.parse(features);
+            } catch (err) {
+                // Fallback: If comma-separated string like "Waterproof, Wipeable, UV Protection"
+                parsedFeatures = features.split(',').map(f => f.trim());
+            }
+        }
+
         const newProduct = new Product({
-            image,
-            name,
+            title,
             category,
-            description
+            features:parsedFeatures,
+            description,
+            image:imageUrl,
         })
-        newProduct.save();
-        // Find Product
+       await newProduct.save();
+        //Find Product
         // const FindProduct = Product.find({})
         // if(!FindProduct){
-        // }else{
         //     res.status(400).json({message:"Product already exist"})
         // }
-        res.status(200).json(newProduct)
+        res.status(200).json({message:"Success", data:newProduct})
     } catch (error) {
           res.status(400).json({message:"Error while trying to add Blinds."})
         console.log("Error in Products Controller.",error);
@@ -54,11 +66,12 @@ export const postProducts = async(req,res)=>{
 export const updateProducts = async(req,res)=>{
     try {
         const Id = req.params.id;
-        const {image,name,category,description} = req.body;
+        const {image,title,category,features,description} = req.body;
         const Updated =  await Product.findByIdAndUpdate(Id,{
             image,
-            name,
+            title,
             category,
+            features,
             description
         })
         res.status(200).json({message:"Updated Successfully!"})
@@ -70,5 +83,6 @@ export const updateProducts = async(req,res)=>{
 
 export const deleteProducts = async(req,res)=>{
     const Id = req.params.id;
-    await Product.deleteOne({_id:Id})
+    await Product.deleteMany()
+    res.status(200).json({message:"Deleted Successfully"})
 }

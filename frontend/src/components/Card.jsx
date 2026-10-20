@@ -19,7 +19,7 @@ const Card = ({ item, i, onOpen, onQuote }) => {
       <button onClick={onOpen} className="block w-full text-left focus:outline-none">
         <div className="relative aspect-[1.35] overflow-hidden">
           <img 
-            src={item.img} 
+            src={item.image} 
             alt={item.title} 
             className="h-full w-full object-cover transition duration-700 group-hover:scale-105" 
           />
@@ -38,10 +38,10 @@ const Card = ({ item, i, onOpen, onQuote }) => {
 
         <div className="p-6">
           <h3 className="font-display text-2xl font-bold text-white">{item.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-blue-100/70">{item.desc}</p>
+          <p className="mt-2 text-sm leading-relaxed text-blue-100/70">{item.description}</p>
           
           <div className="mt-5 flex flex-wrap gap-2">
-            {item.tags?.map((t) => (
+            {item.features.map((t) => (
               <span 
                 key={t} 
                 className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-medium text-blue-100/90"
@@ -54,7 +54,7 @@ const Card = ({ item, i, onOpen, onQuote }) => {
       </button>
 
       {/* Quote Request CTA */}
-      <div className="border-t border-white/10 p-4 bg-black/20">
+      <div className="border-t border-white/10 p-4 bg-black/20 relative">
         <button 
           onClick={onQuote} 
           className=" cursor-pointer flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-bold text-[#FFBD00] transition hover:bg-white/10 "

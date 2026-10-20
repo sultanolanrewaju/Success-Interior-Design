@@ -8,12 +8,13 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import Home from './pages/Home'
+import AddBlinds from './pages/AddBlinds'
 function App() {
 return(    
 <>
     <Routes>
       <Route path="/" element={<Home/>}/>
-  <Route path="/home" element={<Home1/>}/>
+  <Route path="/add" element={<AddBlinds/>}/>
   <Route path="/blinds" element={<Blinds/>}/>
   <Route path="/about" element={<About/>}/>
   <Route path="/contact" element={<Contact/>}/>
