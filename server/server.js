@@ -13,7 +13,7 @@ app.use(express.json())
 const allowedOrigins = [
   "http://localhost:5173",
    "http://localhost:5174",
-  "https://khttps://successinteriordesign.netlify.app/",
+  "https://successinteriordesign.netlify.app/",
   "https://successinteriordesign.com.ng/",
   "https://www.successinteriordesign.com.ng/"
 ];
@@ -41,16 +41,9 @@ app.get("/",(req,res)=>{
 })
 
 
-const server = async()=>{
-    try {
-        await ConnectDB();
+ConnectDB();
 app.listen(PORT,()=>{
     console.log("Server is up and running");
 })
-} catch (error) {
-        console.error("Failed to connect to database:", error);
-    }
-}
 
-server();
 
