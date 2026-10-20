@@ -86,7 +86,7 @@ const steps = [
     useEffect(()=>{
        const Fetch = async()=>{
       try {
-          const response = await Axios.get("http://localhost:8080/api/products")
+          const response = await Axios.get("success-interior-design-one.vercel.app/api/products")
          setProducts(response.data)
          console.log(response.data.features);
          

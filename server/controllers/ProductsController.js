@@ -4,7 +4,7 @@ import Product from "../models/ProductsModel.js";
 export const getProducts = async(req,res)=>{
     try {
         const products = await Product.find({})
-        res.status(200).json(products)
+        res.status(200).json({message:"Success",data:products})
     } catch (error) {
         res.status(400).json({message:"Error while trying to fetch Blinds."})
         console.log("Error in Products Controller.",error);
