@@ -2,6 +2,14 @@
   command = "npm run build"
   publish = "dist"
 
+# 1. Redirect all traffic from your .netlify.app subdomain to your custom domain
+[[redirects]]
+  from = "https://successinteriordesign.netlify.app/*"
+  to = "https://successinteriordesign.com.ng/:splat"
+  status = 301
+  force = true
+
+# 2. SPA fallback rule for your custom domain
 [[redirects]]
   from = "/*"
   to = "/index.html"
