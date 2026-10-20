@@ -6,7 +6,7 @@ export const getProducts = async(req,res)=>{
         const products = await Product.find({})
         res.status(200).json({message:"Success",data:products})
     } catch (error) {
-        res.status(400).json({message:"Error while trying to fetch Blinds."})
+        res.status(400).json({message:"Error while trying to fetch Blinds.",error:error})
         console.log("Error in Products Controller.",error);
     }
 }
