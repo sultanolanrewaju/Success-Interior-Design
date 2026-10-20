@@ -15,7 +15,7 @@ const Hero = () => {
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
       {/* 1. Background Video */}
       <video
-        src="../vid.mp4"
+        src="/vid.mp4"
         autoPlay
         loop
         muted
