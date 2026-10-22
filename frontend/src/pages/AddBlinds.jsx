@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const AddBlinds = () => {
   // 1. Form state variables
@@ -82,6 +83,7 @@ const AddBlinds = () => {
       setFeatures([]);
       setImageFile(null);
       setImagePreview(null);
+      navigate("/")
     } catch (error) {
       console.error('Upload Error:', error);
       setMessage({
