@@ -21,7 +21,7 @@ const Blinds = () => {
     try {
       setIsLoading(true)
         const response = await Axios.get("http://localhost:8080/api/products")
-       setProducts(response.data)
+       setProducts(response.data.data)
     } catch (error) {
       console.log("Error While Fetching:",error)
     }finally{

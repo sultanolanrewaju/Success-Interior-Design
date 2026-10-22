@@ -6,6 +6,8 @@ import Card from "../components/Card"
 import Footer from "../components/Footer"
 import { Data } from '../Data'
 import Step from '../components/Step'
+import Novalue from '../components/Novalue'
+import Loader from '../components/Loader'
 
 import { Ruler, Sparkles, ShieldCheck, ArrowRight } from 'lucide-react'
 import Brands from '../components/Brands'
@@ -84,23 +86,24 @@ const steps = [
   
   const Home = () => {
     useEffect(()=>{
-       const Fetch = async()=>{
-      try {
-          const response = await Axios.get("success-interior-design-one.vercel.app/api/products")
-         setProducts(response.data)
-         console.log(response.data.features);
-         
-      } catch (error) {
-        console.log("Error While Fetching:",error)
-      }finally{
-        // alert("Done")
-      }
-      }
-      Fetch()
-    },[])
-    const [products,setProducts] = useState([])
-  const [booking, setBooking] = useState(false)
-  const [blind, setBlind] = useState("")
+     const Fetch = async()=>{
+    try {
+      setIsLoading(true)
+        const response = await Axios.get("http://localhost:8080/api/products")
+       setProducts(response.data?.data)
+       console.log(response)
+    } catch (error) {
+      console.log("Error While Fetching:",error)
+    }finally{
+  setIsLoading(false)
+    }
+    }
+    Fetch()
+  },[])
+  const [products,setProducts] = useState([])
+  const [booking,setBooking] = useState(false)
+    const [blind, setBlind] = useState("")
+    const [isloading,setIsLoading] = useState(true)
 
 
   return (
@@ -116,19 +119,25 @@ const steps = [
 
     {/* Products Section */}
     <div className="products">
-      <h1 className='text-[40px] font-extrabold text-center py-20'>Get your Amazing window blind Installed</h1>
        
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto px-4 sm:px-6">
-         {
-        products.map((value, id)=>{
-          return(
-        <Card key={id} item={value} onQuote={()=>{
+      <h1 className='text-[40px] font-extrabold text-center py-20'>Get your Amazing window blind Installed</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto px-4 sm:px-6">
+       {
+         isloading?(
+           <Loader/>
+            ):products.length > 0 ?(
+ products.map((value, id) => {
+            return (
+              <Card key={id} item={value}  onQuote={()=>{
            setBlind(value.title);
            setBooking(true);
-        }}/>
-          )
-        })
-       }
+        }} />
+            )
+          })
+            ):(
+            <Novalue/>
+            )
+          }
     </div>
     <center>
  <Link to="blinds"><button className='px-15 py-3 bg-[#031853] rounded-sm text-white text-xl my-10  cursor-pointer'>See More</button>
