@@ -83,7 +83,7 @@ const AddBlinds = () => {
       setFeatures([]);
       setImageFile(null);
       setImagePreview(null);
-      navigate("/")
+      Navigate("/")
     } catch (error) {
       console.error('Upload Error:', error);
       setMessage({
