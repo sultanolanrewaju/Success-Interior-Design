@@ -89,7 +89,7 @@ const steps = [
      const Fetch = async()=>{
     try {
       setIsLoading(true)
-        const response = await Axios.get("http://localhost:8080/api/products")
+        const response = await Axios.get("http://localhost:8080/api/products?limit=3")
        setProducts(response.data?.data)
        console.log(response)
     } catch (error) {

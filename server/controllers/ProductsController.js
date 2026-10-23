@@ -3,7 +3,17 @@ import Product from "../models/ProductsModel.js";
 
 export const getProducts = async(req,res)=>{
     try {
-        const products = await Product.find({})
+            // Check Query
+         const Category = req.query.category;
+
+      let query = {}
+
+      if(Category && Category !== "all"){
+         query.category = Category;
+         console.log(query)
+      }
+            const limit  = req.query.limit ? Number(req.query.limit) : 0; // Default to 0 if not provided
+        const products = await Product.find(query).sort({createdAt:-1}).limit(limit)
         res.status(200).json({message:"Success",data:products})
     } catch (error) {
         res.status(400).json({message:"Error while trying to fetch Blinds.",error:error})

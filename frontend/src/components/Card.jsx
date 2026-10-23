@@ -31,7 +31,7 @@ const Card = ({ item, i, onOpen, onQuote }) => {
           </span>
 
           {/* Hover Arrow Badge */}
-          <span className="absolute bottom-4 right-4 grid h-10 w-10 place-items-center rounded-full bg-[#FFBD00] text-[#031853] opacity-0 transition duration-300 group-hover:opacity-100 shadow-lg">
+          <span className="absolute bottom-4 right-4 grid h-10 w-10 place-items-center rounded-full bg-[#FFBD00] text-[#031853] cursor-pointer opacity-0 transition duration-300 group-hover:opacity-100 shadow-lg" onClick={onQuote}>
             <ArrowUpRight className="h-5 w-5" />
           </span>
         </div>

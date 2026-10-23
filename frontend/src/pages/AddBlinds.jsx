@@ -4,9 +4,9 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 const AddBlinds = () => {
   // 1. Form state variables
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('Light Out');
   const [category, setCategory] = useState('Blinds');
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState('Asolute Peak product.');
   
   // Features tag array state
   const [features, setFeatures] = useState(['Waterproof', 'Wipeable']);

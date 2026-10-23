@@ -1,4 +1,4 @@
-!#/bash/bin
+#!/bash/bin
 
 echo  "What is the message"
 

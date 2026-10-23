@@ -16,11 +16,18 @@ import Novalue from "../components/Novalue"
 
 
 const Blinds = () => {
+  const [products,setProducts] = useState([])
+  const [booking,setBooking] = useState(false)
+    const [blind, setBlind] = useState("")
+    const [isloading,setIsLoading] = useState(true)
+    const [category,setCategory] = useState("")
+    
   useEffect(()=>{
      const Fetch = async()=>{
     try {
       setIsLoading(true)
-        const response = await Axios.get("http://localhost:8080/api/products")
+      setCategory("Home")
+        const response = await Axios.get(`http://localhost:8080/api/products?category=${category}`)
        setProducts(response.data.data)
     } catch (error) {
       console.log("Error While Fetching:",error)
@@ -30,12 +37,6 @@ const Blinds = () => {
     }
     Fetch()
   },[])
-  const [products,setProducts] = useState([])
-  const [booking,setBooking] = useState(false)
-    const [blind, setBlind] = useState("")
-    const [isloading,setIsLoading] = useState(true)
-  const types = ["Office", "Kitchen", "Home", "Toilet"]
-  const [selectedType, setSelectedType] = useState("Home")
 
   return (
     <>
@@ -75,22 +76,12 @@ const Blinds = () => {
 
         {/* Category Buttons */}
         <div className="my-6 flex gap-3 overflow-x-auto pb-3 justify-start sm:justify-center px-4 no-scrollbar">
-          {types.map((data, index) => {
-            const isSelected = selectedType === data
-            return (
-              <button
-                key={index}
-                onClick={() => setSelectedType(data)}
-                className={`cursor-pointer whitespace-nowrap rounded-full px-6 py-2.5 text-sm font-extrabold transition-all duration-300 border-2 shadow-sm shrink-0 flex items-center justify-center ${
-                  isSelected
-                    ? 'bg-[#FFBD00] text-[#031853] border-[#FFBD00] scale-105 shadow-md'
-                    : 'bg-slate-50 text-[#031853] border-slate-200 hover:border-[#031853] hover:bg-slate-100'
-                }`}
-              >
-                {data}
-              </button>
-            )
-          })}
+          <button  className="cursor-pointer whitespace-nowrap rounded-full px-6 py-2.5 text-sm font-extrabold transition-all duration-300 border-2 shadow-sm shrink-0 flex items-center justify-center bg-slate-50 text-[#031853] border-slate-200 hover:border-[#031853] hover:bg-slate-100 focus:bg-[#FFBD00] text-[#031853] border-[#FFBD00] scale-105 shadow-md" onClick={()=>{setCategory("Blind")}}>Home</button>
+                    <button  className="cursor-pointer whitespace-nowrap rounded-full px-6 py-2.5 text-sm font-extrabold transition-all duration-300 border-2 shadow-sm shrink-0 flex items-center justify-center bg-slate-50 text-[#031853] border-slate-200 hover:border-[#031853] hover:bg-slate-100 focus:bg-[#FFBD00] text-[#031853] border-[#FFBD00] scale-105 shadow-md">Office</button>
+                          <button  className="cursor-pointer whitespace-nowrap rounded-full px-6 py-2.5 text-sm font-extrabold transition-all duration-300 border-2 shadow-sm shrink-0 flex items-center justify-center bg-slate-50 text-[#031853] border-slate-200 hover:border-[#031853] hover:bg-slate-100 focus:bg-[#FFBD00] text-[#031853] border-[#FFBD00] scale-105 shadow-md">Kitchen</button>
+                                  <button  className="cursor-pointer whitespace-nowrap rounded-full px-6 py-2.5 text-sm font-extrabold transition-all duration-300 border-2 shadow-sm shrink-0 flex items-center justify-center bg-slate-50 text-[#031853] border-slate-200 hover:border-[#031853] hover:bg-slate-100 focus:bg-[#FFBD00] text-[#031853] border-[#FFBD00] scale-105 shadow-md">Toilet</button>
+
+
         </div>
 
         {/* Card Grid */}
