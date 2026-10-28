@@ -7,6 +7,8 @@ const AddBlinds = () => {
   const [title, setTitle] = useState('Light Out');
   const [category, setCategory] = useState('Blinds');
   const [description, setDescription] = useState('Asolute Peak product.');
+
+  const navigate = useNavigate();
   
   // Features tag array state
   const [features, setFeatures] = useState(['Waterproof', 'Wipeable']);
@@ -69,11 +71,7 @@ const AddBlinds = () => {
       formData.append('image', imageFile);
 
       // Send POST request
-      const response = await axios.post('http://localhost:8080/api/products', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axios.post('http://localhost:8080/api/products', formData);
 
       setMessage({ type: 'success', text: 'Product created successfully!' });
       
@@ -83,12 +81,13 @@ const AddBlinds = () => {
       setFeatures([]);
       setImageFile(null);
       setImagePreview(null);
-      Navigate("/")
+      navigate("/")
     } catch (error) {
       console.error('Upload Error:', error);
       setMessage({
         type: 'error',
         text: error.response?.data?.message || 'Failed to create product.',
+        stack:error.stack
       });
     } finally {
       setLoading(false);

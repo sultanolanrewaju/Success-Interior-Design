@@ -17,7 +17,7 @@ export const getProducts = async(req,res)=>{
         res.status(200).json({message:"Success",data:products})
     } catch (error) {
         res.status(400).json({message:"Error while trying to fetch Blinds.",error:error})
-        console.log("Error in Products Controller.",error);
+        console.log("Error in Products Controller.",error.message);
     }
 }
 
@@ -32,21 +32,30 @@ export const getOneProducts = async(req,res)=>{
         }
     } catch (error) {
         res.status(400).json({message:"Error while trying to fetch Blinds."})
-        console.log("Error in Products Controller.",error);
+        console.log("Error in Products Controller.",error.mesage);
     }
 }
 
-export const postProducts = async(req,res)=>{
+export const postProducts = async (req, res) => {
     try {
-        const {title,category,features,description} = req.body;
-        const imageUrl = req.file ? req.file.path : null;
+        // 🔍 DEBUG: Let's see what the backend is actually receiving
+        console.log("📦 Incoming req.body:", req.body);
+        console.log("📁 Incoming req.file:", req.file);
+
+        const { title, category, features, description } = req.body;
+        
+        // Ensure image file was actually received by multer
+        if (!req.file) {
+            return res.status(400).json({ message: "Image file is required and was not received by the server." });
+        }
+
+        const imageUrl = req.file.path;
 
         let parsedFeatures = features;
         if (typeof features === 'string') {
             try {
                 parsedFeatures = JSON.parse(features);
             } catch (err) {
-                // Fallback: If comma-separated string like "Waterproof, Wipeable, UV Protection"
                 parsedFeatures = features.split(',').map(f => f.trim());
             }
         }
@@ -54,22 +63,23 @@ export const postProducts = async(req,res)=>{
         const newProduct = new Product({
             title,
             category,
-            features:parsedFeatures,
+            features: parsedFeatures,
             description,
-            image:imageUrl,
-        })
-       await newProduct.save();
-        //Find Product
-        // const FindProduct = Product.find({})
-        // if(!FindProduct){
-        //     res.status(400).json({message:"Product already exist"})
-        // }
-        res.status(200).json({message:"Success", data:newProduct})
+            image: imageUrl,
+        });
+
+        await newProduct.save();
+        res.status(200).json({ message: "Success", data: newProduct });
     } catch (error) {
-          res.status(400).json({message:"Error while trying to add Blinds."})
-        console.log("Error in Products Controller.",error);
+        console.error("🔥 500 SERVER CRASH DETAILS:", error.message); 
+        console.error("🔍 Full Error Stack:", error.stack);
+        
+        res.status(500).json({ 
+            message: "Error while trying to add Blinds.", 
+            error: error.message 
+        });
     }
-}
+};
 
 
 
@@ -87,7 +97,7 @@ export const updateProducts = async(req,res)=>{
         res.status(200).json({message:"Updated Successfully!"})
     } catch (error) {
          res.status(400).json({message:"Error while trying to update Blinds."})
-        console.log("Error in Update Products Controller.",error);
+        console.log("Error in Update Products Controller.",error.message);
     }
 }
 

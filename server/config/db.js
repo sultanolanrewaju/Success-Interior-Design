@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv/config';
-
+// import dotenv from 'dotenv/config';
+ import dotenv from "dotenv"
 // Ensure dotenv loads the .env file variables into process.env
-// dotenv.config();
+dotenv.config();
 
 export const ConnectDB = async () => {
   try {
@@ -10,6 +10,10 @@ export const ConnectDB = async () => {
     const nodeEnv = process.env.NODE_ENV || process.env.node_env || 'development';
     
     let MONGO_URI;
+    
+    console.log(nodeEnv);
+    
+    
 
     if (nodeEnv === 'development') {
       MONGO_URI = process.env.MONGO_URI_DEV;

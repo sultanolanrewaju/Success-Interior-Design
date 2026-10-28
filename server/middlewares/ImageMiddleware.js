@@ -3,6 +3,13 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 import {v2 as cloudinary} from "cloudinary";
 import dotenv from "dotenv/config";
 
+// 🔍 1. Log the status to your terminal safely first
+console.log("Cloudinary Env Check:", {
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME ? "Loaded ✅" : "Missing ❌",
+    api_key: process.env.CLOUDINARY_API_KEY ? "Loaded ✅" : "Missing ❌",
+    api_secret: process.env.CLOUDINARY_API_SECRET ? "Loaded ✅" : "Missing ❌"
+});
+
 // Configure Cloudinary with  credentials
 cloudinary.config({
 cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -15,7 +22,7 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         folder: "uploads", // Specify the folder in Cloudinary where files will be stored
-        allowed_formats: ["jpg", "jpeg", "png", "webp","jfif"] // Specify allowed file formats
+        allowed_formats: ["jpg", "jpeg", "png", "webp"] // Specify allowed file formats
     }
 });
 
