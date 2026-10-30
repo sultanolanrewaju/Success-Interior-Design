@@ -14,7 +14,7 @@ const allowedOrigins = [
   "http://localhost:5173",
    "http://localhost:5174",
   "https://successinteriordesign.netlify.app/",
-  "https://successinteriordesign.com.ng/",
+  "https://www.successinteriordesign.com.ng/",
   "https://www.successinteriordesign.com.ng/",
   "https://www.successinteriordesign.com.ng/add"
 ];
