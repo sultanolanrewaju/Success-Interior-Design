@@ -4,7 +4,7 @@ import dotenv from "dotenv/config"
 import { ConnectDB } from "./config/db.js"
 import ProductRoutes from "./routes/ProductsRoutes.js"
 import BookingRoutes from "./routes/BookingRoutes.js"
-
+import ContactRoutes from "./routes/ContactRoutes.js"
 
 const app = express()
 const PORT = process.env.PORT
@@ -34,7 +34,7 @@ app.use(cors({
 
 app.use("/api/products",ProductRoutes)
 app.use("/api/bookings",BookingRoutes)
-
+app.use("/api/contact",ContactRoutes)
 
 
 app.get("/",(req,res)=>{

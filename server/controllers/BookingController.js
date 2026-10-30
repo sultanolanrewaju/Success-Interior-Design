@@ -34,6 +34,23 @@ export const addBooking = async(req,res)=>{
             description
         })
         await AddedBooking.save()
+
+        // 2. Use the database's official timestamp for the email
+        const dbTimestamp = AddedBooking.createdAt;
+
+        const bookingDate = new Date(dbTimestamp).toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+
+        const bookingTime = new Date(dbTimestamp).toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+        });
+
  const ownerEmailHtml = `
             <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; color: #333;">
                 <div style="max-width: 600px; margin: auto; background: #ffffff; padding: 30px; border-radius: 10px; border: 1px solid #e0e0e0;">
@@ -45,7 +62,7 @@ export const addBooking = async(req,res)=>{
                     <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
                            <tr style="border-bottom: 1px solid #f0f0f0;">
                             <td style="padding: 10px 0; font-weight: bold; color: #555; width: 30%;">Booking Time:</td>
-                            <td style="padding: 10px 0; color: #000;">${time}</td>
+                            <td style="padding: 10px 0; color: #000;">${bookingTime}</td>
                         </tr>
 
                     
@@ -67,7 +84,7 @@ export const addBooking = async(req,res)=>{
                         </tr>
                         <tr style="border-bottom: 1px solid #f0f0f0;">
                             <td style="padding: 10px 0; font-weight: bold; color: #555;">Preferred Date:</td>
-                            <td style="padding: 10px 0; color: #000;">${date}</td>
+                            <td style="padding: 10px 0; color: #000;">${bookingDate}</td>
                         </tr>
                            <tr style="border-bottom: 1px solid #f0f0f0;">
                             <td style="padding: 10px 0; font-weight: bold; color: #555;">Client Address:</td>

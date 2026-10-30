@@ -1,5 +1,6 @@
 import React from 'react'
 import {Routes,Route } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast';
 // Pages
 //  import Home from "./pages/Home"
 import Blinds  from './pages/Blinds'
@@ -9,9 +10,24 @@ import NotFound from './pages/NotFound'
 import Home from './pages/Home'
 import AddBlinds from './pages/AddBlinds'
 import Booking from './pages/Booking'
+
+
+
+
 function App() {
 return(    
 <>
+{/* Toast provider container */}
+<Toaster 
+  position="top-right" 
+  toastOptions={{
+    style: {
+      background: '#1f2937', // dark background to match your theme
+      color: '#fff',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+    },
+  }} 
+/>
     <Routes>
       <Route path="/" element={<Home/>}/>
   <Route path="/add" element={<AddBlinds/>}/>

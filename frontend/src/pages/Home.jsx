@@ -172,15 +172,12 @@ const steps = [
 
   {/* CTA Button Wrapper */}
   <div className="flex justify-center mt-12 sm:mt-16">
-    <button 
-      onClick={() => { 
-        setBlind("General Blind"); 
-        setBooking(true); 
-      }} 
-      className="bg-[#FFBD00] text-[#031853] px-8 py-3.5 rounded-xl font-extrabold text-base hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-yellow-500/20 transform hover:-translate-y-0.5 cursor-pointer"
-    >
+    <Link to="/contact">
+    <button className="bg-[#FFBD00] text-[#031853] px-8 py-3.5 rounded-xl font-extrabold text-base hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-yellow-500/20 transform hover:-translate-y-0.5 cursor-pointer">
       Book Our Service
     </button>
+    
+    </Link>
   </div>
 </div>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { RollingText } from '../ui/RollingText'
-
+import {Link} from "react-router-dom"
 
 const serviceList = [
 "Precision-Fitted Blinds",
@@ -45,12 +45,16 @@ const Hero = () => {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link to="/contact"> 
           <button className="w-full sm:w-auto bg-[#FFBD00] text-[#031853] hover:bg-yellow-400 font-bold px-8 py-4 rounded-xl shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">
             Book Free Consultation
           </button>
+          </Link>
+          <Link to="/blinds">   
           <button className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md font-semibold px-8 py-4 rounded-xl transition-all duration-300 cursor-pointer">
             Explore Blind Styles
           </button>   
+          </Link>
         </div>
       </div>
     </section>

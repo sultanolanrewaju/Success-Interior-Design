@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { SmoothCaret } from './SmoothCaret'
+import toast from 'react-hot-toast'
+import axios from "axios"
 import { User, Mail, MessageSquare, Tag, CheckCircle2, ArrowRight } from 'lucide-react'
 import ServiceAreaMap from "../components/ServiceAreaMap" 
 import Footer from "../components/Footer"
-
 const ContactFrom = () => {
   const [showError, setShowError] = useState(false) // Toggle error banner visibility
-  const [error, setError] = useState("") // Error message text
+  const [error, setError] = useState("") 
+  const [loading,setLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,7 +35,7 @@ setFormData((prevData) => ({
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
 
     // 1. Check if any field is empty
@@ -50,11 +52,33 @@ setFormData((prevData) => ({
       return // Stops execution here so it doesn't submit
     }
 
-    // 3. Success State
-    setShowError(false)
-    setError("")
-    console.log('Submitted Message:', formData)
-    alert('Thank you! Your inquiry has been sent. We will respond within 30 minutes.')
+
+
+    // Send Mail to the Owner
+
+     try {
+          const payload = {
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            address: formData.address,
+            message: formData.message
+          };
+    
+          const response = await axios.post("http://localhost:8080/api/contact", payload);
+    
+          if (response.status === 200) {
+            toast.success("BMessage Sent Successfully!.");
+          }
+        } catch (error) {
+          console.error("Booking error:", error);
+          toast.error("Failed to send. Please try again.");
+        } finally {
+          setLoading(false);
+        }
+      
+
+   
   }
 
   return (
@@ -160,7 +184,7 @@ setFormData((prevData) => ({
               type="submit"
               className="w-full bg-[#031853] hover:bg-blue-950 text-[#FFBD00] font-extrabold text-base py-4 rounded-2xl shadow-lg flex items-center justify-center gap-3 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
             >
-              <span>Send Message</span>
+              <span>{loading ? "Submitting" : "Send Message"}</span>
               <ArrowRight className="h-5 w-5" />
             </button>
 
