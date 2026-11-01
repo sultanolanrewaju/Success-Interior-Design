@@ -65,7 +65,7 @@ setFormData((prevData) => ({
             message: formData.message
           };
     
-          const response = await axios.post("http://localhost:8080/api/contact", payload);
+          const response = await axios.post("https://success-interior-design-1.onrender.com/api/contact", payload);
     
           if (response.status === 200) {
             toast.success("BMessage Sent Successfully!.");
