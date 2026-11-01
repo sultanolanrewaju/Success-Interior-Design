@@ -32,7 +32,7 @@ const BookingForm = ({blind,onClose}) => {
         description: data.notes
       };
 
-      const response = await axios.post("http://localhost:8080/api/bookings", payload);
+      const response = await axios.post("https://success-interior-design-1.onrender.com/api/bookings", payload);
 
       if (response.status === 200) {
         toast.success("Booking submitted successfully! Owner has been notified.");

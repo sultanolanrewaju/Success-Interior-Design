@@ -27,7 +27,7 @@ const Blinds = () => {
     try {
       setIsLoading(true)
       setCategory("Home")
-        const response = await Axios.get(`http://localhost:8080/api/products?category=${category}`)
+        const response = await Axios.get(`https://success-interior-design-1.onrender.com/api/products?category=${category}`)
        setProducts(response.data.data)
     } catch (error) {
       console.log("Error While Fetching:",error)
