@@ -12,12 +12,8 @@ const PORT = process.env.PORT
 app.use(express.json())
 const allowedOrigins = [
   "http://localhost:5173",
-   "http://localhost:5174",
   "https://successinteriordesign.netlify.app/",
-  "https://www.successinteriordesign.com.ng/",
-  "https://www.successinteriordesign.com.ng/",
-  "https://www.successinteriordesign.com.ng/add",
-   "https://www.successinteriordesign.com.ng/contact"
+  "https://www.successinteriordesign.com.ng/"
 ];
 
 app.use(cors({
