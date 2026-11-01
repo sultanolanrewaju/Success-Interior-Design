@@ -16,7 +16,8 @@ const allowedOrigins = [
   "https://successinteriordesign.netlify.app/",
   "https://www.successinteriordesign.com.ng/",
   "https://www.successinteriordesign.com.ng/",
-  "https://www.successinteriordesign.com.ng/add"
+  "https://www.successinteriordesign.com.ng/add",
+   "https://www.successinteriordesign.com.ng/contact"
 ];
 
 app.use(cors({
