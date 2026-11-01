@@ -71,7 +71,7 @@ const AddBlinds = () => {
       formData.append('image', imageFile);
 
       // Send POST request
-      const response = await axios.post('https://success-interior-design-1.onrender.com/api/api/products', formData);
+      const response = await axios.post('https://success-interior-design-1.onrender.com/api/products', formData);
 
       setMessage({ type: 'success', text: 'Product created successfully!' });
       
